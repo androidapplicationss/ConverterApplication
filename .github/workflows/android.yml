@@ -31,7 +31,7 @@ jobs:
           unzip commandlinetools-linux-8512546_latest.zip
           mv cmdline-tools/* ./
           rm -rf cmdline-tools
-          # Create the latest directory as expected
+          # Ensure the sdkmanager is in the correct location
           mkdir -p $HOME/android-sdk/cmdline-tools/latest
           mv * $HOME/android-sdk/cmdline-tools/latest/
           yes | $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
@@ -72,4 +72,4 @@ jobs:
 
       - name: Notify QA
         run: echo "APK build and release created. Notify QA team to review the release."
-        # Replace this with actual notification logic if needed
+        # Replace this with actual notification lo
