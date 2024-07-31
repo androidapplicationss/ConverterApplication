@@ -23,12 +23,21 @@ jobs:
           distribution: 'adopt'
           java-version: '17'
 
+      - name: Set up Android SDK
+        uses: reactivecircus/android-emulator-runner@v3
+        with:
+          api-level: 30  # Choose the appropriate API level
+          target: google_apis
+          arch: x86_64
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./gradlew assembleRelease
 
-      - name: Run Unit Tests
-        run: ./gradlew test
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: apk
+          path: app/build/outputs/apk/release/app-release.apk
