@@ -23,20 +23,21 @@ jobs:
           distribution: 'adopt'
           java-version: '21'
 
-      - name: Install Android SDK
+      - name: Install Android SDK Command Line Tools
         run: |
-          mkdir -p $HOME/android-sdk
-          cd $HOME/android-sdk
+          mkdir -p $HOME/android-sdk/cmdline-tools
+          cd $HOME/android-sdk/cmdline-tools
           wget https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip
           unzip commandlinetools-linux-8512546_latest.zip
-          mv cmdline-tools latest
-          yes | ./latest/bin/sdkmanager --licenses
-          ./latest/bin/sdkmanager "platforms;android-30" "build-tools;30.0.3"
+          mv cmdline-tools/* ./
+          rm -rf cmdline-tools
+          yes | ./bin/sdkmanager --licenses
+          ./bin/sdkmanager "platforms;android-30" "build-tools;30.0.3"
 
       - name: Set up Android environment
         run: |
           echo "ANDROID_SDK_ROOT=$HOME/android-sdk" >> $GITHUB_ENV
-          echo "PATH=$PATH:$HOME/android-sdk/platform-tools:$HOME/android-sdk/latest/bin" >> $GITHUB_ENV
+          echo "PATH=$PATH:$HOME/android-sdk/platform-tools:$HOME/android-sdk/cmdline-tools/bin" >> $GITHUB_ENV
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
