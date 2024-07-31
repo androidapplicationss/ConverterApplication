@@ -27,7 +27,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build APK with Gradle
-        run: ./gradlew assembleRelease
+        run: ./gradlew assembleDebug
 
       - name: Run Unit Tests
         run: ./gradlew test
@@ -35,5 +35,5 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v3
         with:
-          name: my-app-apk
-          path: app/build/outputs/apk/release/app-release.apk
+          name: converter-app
+          path: app/build/outputs/apk/release/app-debug.apk
