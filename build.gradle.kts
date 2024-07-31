@@ -13,7 +13,7 @@ buildscript {
     }
     dependencies {
         // Use the latest version of Gradle plugin compatible with Java 17 and Gradle version
-        classpath("com.android.tools.build:gradle:8.0.2")
+        classpath("com.android.tools.build:gradle:8.1.0")
         classpath("androidx.room:room-gradle-plugin:2.6.1")
         // Other classpath dependencies if necessary
     }
